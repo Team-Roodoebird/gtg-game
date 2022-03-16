@@ -21,17 +21,17 @@ public class MainMenuController : MonoBehaviour
         //Play starting song on Menu Start
         if (_openingSong != null)
         {
-            global::AudioManager.Instance.PlaySong(_openingSong);
+            global::Audio.Instance.PlaySong(_openingSong);
         }
 
-        volumeSlider.value = global::AudioManager.Instance._audioSource.volume;
-        volumeSlider.maxValue = global::AudioManager.Instance._audioSource.maxDistance;
-        volumeSlider.maxValue = global::AudioManager.Instance._audioSource.minDistance;
+        volumeSlider.value = global::Audio.Instance._audioSource.volume;
+        volumeSlider.maxValue = global::Audio.Instance._audioSource.maxDistance;
+        volumeSlider.maxValue = global::Audio.Instance._audioSource.minDistance;
     }
 
     public void AdjustVolume()
     {
-        global::AudioManager.Instance.AdjustVolume(volumeSlider.value);
+        global::Audio.Instance.AdjustVolume(volumeSlider.value);
         Debug.Log("New volume: " + volumeSlider.value.ToString());
     }
 
@@ -46,7 +46,7 @@ public class MainMenuController : MonoBehaviour
 
     /*public void StartMusic()
     {
-        global::AudioManager.Instance.PlaySong(_startingSong);
+        global::Audio.Instance.PlaySong(_startingSong);
     }*/
 
     public void QuitGame()
