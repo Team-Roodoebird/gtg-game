@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -21,17 +22,17 @@ public class MainMenuController : MonoBehaviour
         //Play starting song on Menu Start
         if (_openingSong != null)
         {
-            global::Audio.Instance.PlaySong(_openingSong);
+            global::AudioManager.Instance.PlaySong(_openingSong);
         }
 
-        volumeSlider.value = global::Audio.Instance._audioSource.volume;
-        volumeSlider.maxValue = global::Audio.Instance._audioSource.maxDistance;
-        volumeSlider.maxValue = global::Audio.Instance._audioSource.minDistance;
+        volumeSlider.value = global::AudioManager.Instance._audioSource.volume;
+        volumeSlider.maxValue = global::AudioManager.Instance._audioSource.maxDistance;
+        volumeSlider.maxValue = global::AudioManager.Instance._audioSource.minDistance;
     }
 
     public void AdjustVolume()
     {
-        global::Audio.Instance.AdjustVolume(volumeSlider.value);
+        global::AudioManager.Instance.AdjustVolume(volumeSlider.value);
         Debug.Log("New volume: " + volumeSlider.value.ToString());
     }
 
@@ -46,7 +47,7 @@ public class MainMenuController : MonoBehaviour
 
     /*public void StartMusic()
     {
-        global::Audio.Instance.PlaySong(_startingSong);
+        global::AudioManager.Instance.PlaySong(_startingSong);
     }*/
 
     public void QuitGame()
