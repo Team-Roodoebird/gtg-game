@@ -8,8 +8,26 @@ public class DialogueSystem : MonoBehaviour
     //variable to have an easy reference to the dialogue system (assigned at awake)
     public static DialogueSystem instance;
 
-    public ELEMENTS elements;
+    /**
+     * The main panel containing all dialogue related elements on the UI
+     **/
+    [System.Serializable]
+    public class ELEMENTS
+    {
+        public GameObject speechPanel;
+        public Text speakerNameText;
+        public Text speechText;
+    }
 
+    public ELEMENTS elements;
+    public GameObject speechPanel { get { return elements.speechPanel; } }
+    public Text speakerNameText { get { return elements.speakerNameText; } }
+    public Text speechText { get { return elements.speechText; } }
+
+    public bool isSpeaking { get { return speaking != null; } }
+    [HideInInspector] public bool isWaitingForUserInput = false;
+
+    Coroutine speaking = null;
 
     private void Awake()
     {
@@ -35,7 +53,18 @@ public class DialogueSystem : MonoBehaviour
          * 2. start saying the new stuff
          */
         StopSpeaking();
-        speaking = StartCoroutine(Speaking(speech, speaker));
+        speaking = StartCoroutine(Speaking(speech, false, speaker));
+    }
+
+
+    /**
+     * Say something to be added to what is already on the speech box.
+     **/
+    public void SayAdd(string speech, string speaker = "")
+    {
+        StopSpeaking();
+        speechText.text = targetSpeech;
+        speaking = StartCoroutine(Speaking(speech, true, speaker));
     }
 
 
@@ -49,16 +78,13 @@ public class DialogueSystem : MonoBehaviour
     }
 
 
-    public bool isSpeaking { get { return speaking != null; } }
-    [HideInInspector] public bool isWaitingForUserInput = false;
-
-    Coroutine speaking = null;
-    IEnumerator Speaking(string targetSpeech, string speaker = "")
+    string targetSpeech = "";
+    IEnumerator Speaking(string speech, bool additive, string speaker = "")
     {
         /*
          * Psuedocode:
          * 1. make sure the speach panel is visible on screen
-         * 2. clear out current text
+         * 2. if(not additive) -> clear out current text
          * 3. make sure current speaker name is visible
          * 4. while currently shown text != text we want to show
          *      print the next character and return
@@ -66,8 +92,14 @@ public class DialogueSystem : MonoBehaviour
          */
 
         speechPanel.SetActive(true);
-        speechText.text = "";
-        speakerNameText.text = speaker; // temporary, don't want to set speaker for every script line
+        targetSpeech = speech;
+
+        if (!additive)
+            speechText.text = "";
+        else
+            targetSpeech = speechText.text + targetSpeech;
+
+        speakerNameText.text = DetermineSpeaker(speaker);
         isWaitingForUserInput = false;
 
         while(speechText.text != targetSpeech)
@@ -87,22 +119,13 @@ public class DialogueSystem : MonoBehaviour
     }
 
 
-
-
-
-
-    /**
-     * The main panel containing all dialogue related elements on the UI
-     **/
-    [System.Serializable]
-    public class ELEMENTS
+    string DetermineSpeaker(string s)
     {
-        public GameObject speechPanel;
-        public Text speakerNameText;
-        public Text speechText;
-    }
+        string retVal = speakerNameText.text; // default return is the current speaker
 
-    public GameObject speechPanel { get { return elements.speechPanel; } }
-    public Text speakerNameText { get { return elements.speakerNameText; } }
-    public Text speechText { get { return elements.speechText; } }
+        if (s != speakerNameText.text && s != "")
+            retVal = (s.ToLower().Contains("narator")) ? "" : s;
+
+        return retVal;
+    }
 }

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1158524622512145756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158524622512145755}
+  - component: {fileID: 1158524622512145754}
+  - component: {fileID: 1158524622512145757}
+  m_Layer: 0
+  m_Name: SpeechController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1158524622512145755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158524622512145756}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1158524622512145754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158524622512145756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dea57bde449bbc4aa0263c8ddb4bff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elements:
+    speechPanel: {fileID: 0}
+    speakerNameText: {fileID: 0}
+    speechText: {fileID: 0}
+  isWaitingForUserInput: 0
+--- !u!114 &1158524622512145757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158524622512145756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b16bb455a3cdd4bb5eecb013cf2201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testString:
+  - The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively
+    gets more difficult as it continues.:Anouncer
+  - The 20 meter pacer test will begin in 30 seconds.
+  - Line up at the start.
+  - The running speed starts slowly but gets faster each minute after you hear this
+    signal bodeboop.
+  - A sing lap should be completed every time you hear this sound.
+  - ding Remember to run in a straight line and run as long as possible.
+  - The second time you fail to complete a lap before the sound, your test is over.
+  - "The test will begin on the word start. On your mark. Get ready!\u2026 Start.
+    ding\uFEFF"
