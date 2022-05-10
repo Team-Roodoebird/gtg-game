@@ -17,7 +17,8 @@ public class GameMenuController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Escape Key Pressed");
-            gameMenu.SetActive(!gameMenu.activeSelf);
+            gameMenu.SetActive(!gameMenu.activeSelf); //most compact code for setting the menu active state to 
+                                                      //the opposite of what it was before
         }
     
     }
