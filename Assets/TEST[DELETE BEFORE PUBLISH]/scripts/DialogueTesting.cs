@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Testing : MonoBehaviour
+public class DialogueTesting : MonoBehaviour
 {
     DialogueSystem dialogue;
     public string[] testString = new string[]
